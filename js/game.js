@@ -7,6 +7,7 @@ const HERO = '♆';
 const ALIEN = '👽';
 const LASER = '⤊';
 const FLOOR = '#';
+const SKY = ' ';
 // Matrix of cell objects. e.g.: {type: SKY, gameObject: ALIEN}
 var gBoard;
 var gGame = {
@@ -36,7 +37,10 @@ function createBoard() {
 
         for (var j = 0; j < SIZE; j++) {
             if (i === (SIZE - 1)) board[i][j] = FLOOR
-            else board[i][j] = ''
+            else board[i][j] = SKY
+
+            // if (i === (SIZE - 1)) board[i][j] = createCell(FLOOR)
+            // else board[i][j] = createCell(FLOOR)
         }
     }
     
