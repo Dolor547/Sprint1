@@ -1,0 +1,21 @@
+* {
+    text-align: center;
+}
+
+body {
+    background-color:azure;
+}
+
+.board-container {
+    margin-top: 50px;
+    display: inline-block;
+}
+
+table {
+    background-color:ghostwhite;
+}
+
+td {
+    height: 25px;
+    width: 25px;
+}
