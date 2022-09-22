@@ -1,9 +1,20 @@
 * {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2 {
+    width: 500px;
+    background-color: rgb(194, 165, 2);
+    color: azure;
+}
+
+h2 {
+    width: 200px;
 }
 
 body {
-    background-color:azure;
+    background-image: linear-gradient(rgb(0, 17, 74), rgb(40, 40, 40));
 }
 
 .board-container {
@@ -12,10 +23,15 @@ body {
 }
 
 table {
+    border-collapse: collapse;
     background-color:ghostwhite;
 }
 
 td {
     height: 25px;
     width: 25px;
+}
+
+.hide {
+    display: none;
 }

@@ -15,7 +15,7 @@ function createAliens(board) {
     const SIZE = board.length
     for (var i = 0; i < 3; i++) {
         for (var j = 3; j < 11; j++) {
-            board[i][j] = '👽'
+            board[i][j] = createCell(ALIEN)
         }
     }
 }
