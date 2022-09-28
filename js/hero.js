@@ -85,7 +85,7 @@ function shoot(pos) {
             // }, 500)
             // currLaserPos.i--
             
-            if (gBoard[currLaserPos.i - 1][currLaserPos.j].gameObject === ALIEN) updateCell(gBoard[currLaserPos.i - 1][currLaserPos.j], ' ')
+                
             blinkLaser({i: currLaserPos.i--, j: currLaserPos.j})
             
         } else {
