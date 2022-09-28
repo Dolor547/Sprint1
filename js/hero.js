@@ -75,18 +75,18 @@ function shoot(pos) {
     console.log('currLaserPos:', currLaserPos);
 
 
-    while (currLaserPos.i >= 0) {
+    while (currLaserPos.i >= 1) {
         if (gBoard[currLaserPos.i][currLaserPos.j].gameObject != ALIEN) {
             // clearTimeout(gGame.laserInterval)
             // gGame.laserInterval = setTimeout(function () {
-            // blinkLaser(currLaserPos)
+            
+            blinkLaser(currLaserPos)
+            // blinkLaser({i: currLaserPos.i--, j: currLaserPos.j})
+
             // console.log('currLaserPos:', currLaserPos);
             // console.log('-------------------------');
             // }, 500)
-            // currLaserPos.i--
-            
-                
-            blinkLaser({i: currLaserPos.i--, j: currLaserPos.j})
+            currLaserPos.i--
             
         } else {
             gGame.score += 10
@@ -109,7 +109,6 @@ function shoot(pos) {
     // renders a LASER at specific cell for short time and removes it
     function blinkLaser(pos) { 
         console.log('run number ' + count);
-        console.log(pos);
         count++
         
         // if (pos.i >= 0) {
