@@ -29,7 +29,7 @@ function onKeyDown(ev) {
                 nextLocation.j++;
                 break;
             case 'Space':
-                shoot({ i: gHero.pos.i - 1, j: gHero.pos.j })
+                shoot(gHero.pos)
                 break;
             default:
                 return null;
@@ -68,25 +68,65 @@ function moveHero(dir) {
     updateCell(nextCell, HERO)
 }
 
-// Sets an interval for shutting (blinking) the laser up towards aliens
+// Sets an interval for shooting (blinking) the laser up towards aliens
 function shoot(pos) {
     gHero.isShoot = true
-    var currPos = pos
-    var nextPos = { i: pos.i - 1, j: pos.j }
-    while (true) {
-        if (nextPos.i < 0) gHero.isShoot = false
-        if (gBoard[nextPos.i][nextPos.j] === ALIEN) gHero.isShoot = false
+    var currLaserPos = { i: pos.i - 1, j: pos.j }
+    console.log('currLaserPos:', currLaserPos);
 
-        updateCell(currPos, '')
-        updateCell(nextPos, LASER)
-        gGame.laserInterval = setInterval((pos, HERO), 500)
+
+    while (currLaserPos.i >= 0) {
+        if (gBoard[currLaserPos.i][currLaserPos.j].gameObject != ALIEN) {
+            // clearTimeout(gGame.laserInterval)
+            // gGame.laserInterval = setTimeout(function () {
+            // blinkLaser(currLaserPos)
+            // console.log('currLaserPos:', currLaserPos);
+            // console.log('-------------------------');
+            // }, 500)
+            // currLaserPos.i--
+            
+            if (gBoard[currLaserPos.i - 1][currLaserPos.j].gameObject === ALIEN) updateCell(gBoard[currLaserPos.i - 1][currLaserPos.j], ' ')
+            blinkLaser({i: currLaserPos.i--, j: currLaserPos.j})
+            
+        } else {
+            gGame.score += 10
+            gHero.isShoot = false
+            return
+        }
+        
     }
-
+        // blinkLaser(currLaserPos)
+        
+        console.log('currLaserPos:', currLaserPos);
+        console.log('-------------------------');
+        // clearTimeout(gGame.laserInterval)
+        
+        if (currLaserPos.i < 0) gHero.isShoot = false
+        
+    }
+    
+    var count = 0
+    // renders a LASER at specific cell for short time and removes it
+    function blinkLaser(pos) { 
+        console.log('run number ' + count);
+        console.log(pos);
+        count++
+        
+        // if (pos.i >= 0) {
+            //modal
+            gBoard[pos.i][pos.j].gameObject = LASER
+            
+            //DOM
+            updateCell(pos, LASER)
+            
+            setTimeout(function () {
+                //modal
+                gBoard[pos.i][pos.j].gameObject = ' '
+                
+                //DOM
+                updateCell(pos, ' ')
+                console.log('interval');
+            }, 1000)
+            // clearTimeout(gGame.laserInterval)
+    // }
 }
-
-// renders a LASER at specific cell for short time and removes it
-// function blinkLaser(pos) {
-//     updateCell(pos, LASER)
-
-
-// }

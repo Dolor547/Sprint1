@@ -81,11 +81,12 @@ function createCell(gameObject = null) {
 
 // position such as: {i: 2, j: 7}
 function updateCell(pos, gameObject = null) {
-    checkStatus()
-
-    gBoard[pos.i][pos.j].gameObject = gameObject;
-    var elCell = getElCell(pos);
-    elCell.innerHTML = gameObject || ' ';
+    // checkStatus()
+    if (pos.i >= 0) {
+        gBoard[pos.i][pos.j].gameObject = gameObject;
+        var elCell = getElCell(pos);
+        elCell.innerHTML = gameObject || ' ';
+    }
 }
 
 function victory() {
@@ -101,3 +102,7 @@ function checkStatus() {
         victory()
     }
 }
+
+// function clearGameIntervals() {
+//     clearInterval(gGame.laserInterval)
+// }
